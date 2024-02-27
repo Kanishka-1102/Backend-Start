@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    
+    .container {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        width: 300px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+        background-color: #ff7e5f;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #ff6a4a;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <form id="registrationForm" onsubmit="return registerUser()">
+        <h2>Registration Form</h2>
+        <input type="text" id="name" placeholder="Name" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <input type="tel" id="phone" placeholder="Phone Number" required><br>
+
+    </form>
+    <button  id="register">Register</button>
+</div>
+
+ 
+             <!-- axios fetch -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    let btn = document.getElementById("register");
+    btn.addEventListener('click',async function(e){
+       e.preventDefault()
+        let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let phone = document.getElementById("phone").value;
+    let resp= await axios.post('/auth/signup',{name,email,phone,password});
+    console.log('resp',resp);
+    })
+</script>
+
+</body>
+</html>
